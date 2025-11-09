@@ -1,9 +1,12 @@
 package com.portal.community.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,26 +16,27 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "O título é obrigatório")
-    @Size(min = 3, max = 100, message = "O título deve ter entre 3 e 100 caracteres")
-    @Column(nullable = false)
+//    @NotBlank(message = "O título é obrigatório")
+//    @Size(min = 3, max = 100, message = "O título deve ter entre 3 e 100 caracteres")
+//    @Column(nullable = false)
     private String titulo;
 
-    @NotBlank(message = "A descrição é obrigatória")
-    @Size(max = 1000, message = "A descrição deve ter no máximo 1000 caracteres")
-    @Column(length = 1000)
+//    @NotBlank(message = "A descrição é obrigatória")
+//    @Size(max = 1000, message = "A descrição deve ter no máximo 1000 caracteres")
+//    @Column(length = 1000)
     private String descricao;
 
-    @NotNull(message = "A data é obrigatória")
-    @Column(nullable = false)
-    private LocalDateTime data;
+//    @NotNull(message = "A data é obrigatória")
+//    @Column(nullable = false)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate data;
 
-    @NotBlank(message = "O local é obrigatório")
-    @Size(max = 200, message = "O local deve ter no máximo 200 caracteres")
+//    @NotBlank(message = "O local é obrigatório")
+//    @Size(max = 200, message = "O local deve ter no máximo 200 caracteres")
     private String localizacao;
 
-    @NotBlank(message = "O organizador é obrigatório")
-    @Size(max = 100, message = "O organizador deve ter no máximo 100 caracteres")
+//    @NotBlank(message = "O organizador é obrigatório")
+//    @Size(max = 100, message = "O organizador deve ter no máximo 100 caracteres")
     private String organizador;
 
     public Event() {
@@ -62,11 +66,11 @@ public class Event {
         this.descricao = descricao;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
